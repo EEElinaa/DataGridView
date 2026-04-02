@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="Airport.Domain/Airport.Domain.csproj" />
+  <Project Path="Airport.Services.Contracts/Airport.Services.Contracts.csproj" />
+  <Project Path="Airport.Services/Airport.Services.csproj" />
+  <Project Path="Airport.Storage.Contracts/Airport.Storage.Contracts.csproj" />
+  <Project Path="Airport.Storage.InMemory/Airport.Storage.InMemory.csproj" />
+  <Project Path="Airport.WinForms/Airport.WinForms.csproj" />
+</Solution>
