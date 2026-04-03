@@ -1,4 +1,8 @@
 using Airport.WinForms.Forms.Constants;
+
+using ComboBoxItemsConstants = Airport.WinForms.Forms.Constants.ComboBoxItemsConstants;
+using FormattingConstants = Airport.WinForms.Forms.Constants.FormattingConstants;
+
 namespace Airport.WinForms.Forms
 {
     partial class FlightForm
@@ -26,6 +30,7 @@ namespace Airport.WinForms.Forms
         private System.Windows.Forms.GroupBox FlightInfoGroupBox;
         private System.Windows.Forms.Label RevenuePreviewLabel;
         private System.Windows.Forms.Label RevenuePreviewValueLabel;
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -34,6 +39,7 @@ namespace Airport.WinForms.Forms
             }
             base.Dispose(disposing);
         }
+
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
@@ -116,7 +122,7 @@ namespace Airport.WinForms.Forms
 
             // AircraftTypeComboBox
             AircraftTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            AircraftTypeComboBox.Items.AddRange(UiConstants.ComboBoxItems.AllItems);
+            AircraftTypeComboBox.Items.AddRange(ComboBoxItemsConstants.AllItems);
             AircraftTypeComboBox.Location = new System.Drawing.Point(180, 72);
             AircraftTypeComboBox.Name = "AircraftTypeComboBox";
             AircraftTypeComboBox.Size = new System.Drawing.Size(300, 28);
@@ -130,7 +136,7 @@ namespace Airport.WinForms.Forms
             ArrivalTimeLabel.Text = "Время прибытия:";
 
             // ArrivalTimeDateTimePicker
-            ArrivalTimeDateTimePicker.CustomFormat = UiConstants.Formatting.DateTimeFormat;
+            ArrivalTimeDateTimePicker.CustomFormat = FormattingConstants.DateTimeFormat;
             ArrivalTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             ArrivalTimeDateTimePicker.Location = new System.Drawing.Point(180, 112);
             ArrivalTimeDateTimePicker.Name = "ArrivalTimeDateTimePicker";

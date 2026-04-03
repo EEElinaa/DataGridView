@@ -2,24 +2,25 @@ using Airport.Domain.Constants;
 using Airport.Domain.Models;
 using Airport.WinForms.Extensions;
 using Airport.WinForms.Formatters;
-using Airport.WinForms.Forms.Constants;
+using ComboBoxItemsConstants = Airport.WinForms.Forms.Constants.ComboBoxItemsConstants;
+using MessagesConstants = Airport.WinForms.Forms.Constants.MessagesConstants;
 namespace Airport.WinForms.Forms
 {
     /// <summary>
-    /// Форма для добавления или редактирования информации о рейсе.
+    /// Форма для добавления и редактирования рейса
     /// </summary>
     public partial class FlightForm : Form
     {
         private readonly Flight flight;
         private readonly bool isEditMode;
-
         /// <summary>
-        /// Инициализирует новый экземпляр формы FlightForm.
+        /// Конструктор формы рейса
         /// </summary>
-        /// <param name="flight">Объект рейса для редактирования. Если null, создаётся новый рейс.</param>
+        /// <param name="flight">Рейс для редактирования (если null — создаётся новый)</param>
         public FlightForm(Flight? flight = null)
         {
             InitializeComponent();
+
             this.flight = flight ?? new Flight();
             isEditMode = flight != null;
             if (!isEditMode && this.flight.ArrivalTime == default)
@@ -39,12 +40,12 @@ namespace Airport.WinForms.Forms
         }
 
         /// <summary>
-        /// Возвращает объект рейса, созданный или отредактированный в форме.
+        /// Возвращает результат — созданный или отредактированный рейс
         /// </summary>
         public Flight ResultFlight => flight;
 
         /// <summary>
-        /// Загружает данные из объекта рейса в элементы управления формы.
+        /// Загружает данные рейса в элементы управления формы
         /// </summary>
         private void LoadFlightData()
         {
@@ -55,6 +56,7 @@ namespace Airport.WinForms.Forms
                 errorProvider: ErrorProvider);
             var aircraftTypeDisplay = FlightFormatter.FormatAircraftType(flight.AircraftType);
             AircraftTypeComboBox.SelectedItem = aircraftTypeDisplay;
+
             ArrivalTimeDateTimePicker.AddBinding(
                 targetProperty: dateTimePicker => dateTimePicker.Value,
                 source: flight,
@@ -88,7 +90,7 @@ namespace Airport.WinForms.Forms
         }
 
         /// <summary>
-        /// Настраивает предварительный просмотр выручки и подписывается на события изменения данных.
+        /// Настраивает предпросмотр выручки при изменении значений
         /// </summary>
         private void SetupRevenuePreview()
         {
@@ -101,7 +103,7 @@ namespace Airport.WinForms.Forms
         }
 
         /// <summary>
-        /// Обновляет отображение предварительной выручки на основе введённых данных.
+        /// Обновляет отображение предварительной выручки
         /// </summary>
         private void UpdateRevenuePreview()
         {
@@ -117,18 +119,17 @@ namespace Airport.WinForms.Forms
         }
 
         /// <summary>
-        /// Настраивает отображение выпадающего списка с типами воздушных судов.
+        /// Настраивает отображение ComboBox с поддержкой прорисовки элементов
         /// </summary>
         private void SetupComboBoxDisplay()
         {
             AircraftTypeComboBox.DrawMode = DrawMode.OwnerDrawFixed;
             AircraftTypeComboBox.DrawItem += AircraftTypeComboBox_DrawItem;
         }
+
         /// <summary>
-        /// Обрабатывает отрисовку элемента в выпадающем списке типов воздушных судов.
+        /// Обработчик прорисовки элементов ComboBox (для кастомного отображения)
         /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="eventArgs">Аргументы события отрисовки.</param>
         private void AircraftTypeComboBox_DrawItem(object? sender, DrawItemEventArgs eventArgs)
         {
             if (eventArgs.Index == -1)
@@ -143,10 +144,8 @@ namespace Airport.WinForms.Forms
         }
 
         /// <summary>
-        /// Обрабатывает нажатие кнопки сохранения. Проверяет введённые данные и сохраняет рейс.
+        /// Обработчик нажатия кнопки сохранения
         /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="eventArgs">Аргументы события.</param>
         private void SaveButton_Click(object sender, EventArgs eventArgs)
         {
             FlightNumberTextBox.DataBindings["Text"]?.WriteValue();
@@ -159,9 +158,9 @@ namespace Airport.WinForms.Forms
             var selectedItem = AircraftTypeComboBox.SelectedItem?.ToString();
             flight.AircraftType = selectedItem switch
             {
-                UiConstants.ComboBoxItems.Boeing => AircraftType.Boeing,
-                UiConstants.ComboBoxItems.Airbus => AircraftType.Airbus,
-                UiConstants.ComboBoxItems.Oak => AircraftType.Oak,
+                ComboBoxItemsConstants.Boeing => AircraftType.Boeing,
+                ComboBoxItemsConstants.Airbus => AircraftType.Airbus,
+                ComboBoxItemsConstants.Oak => AircraftType.Oak,
                 _ => AircraftType.Boeing
             };
             if (ValidateChildren())
@@ -172,18 +171,16 @@ namespace Airport.WinForms.Forms
             else
             {
                 MessageBox.Show(
-                    UiConstants.Messages.ValidationError,
-                    UiConstants.Messages.ValidationErrorTitle,
+                    MessagesConstants.ValidationError,
+                    MessagesConstants.ValidationErrorTitle,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
             }
         }
 
         /// <summary>
-        /// Обрабатывает нажатие кнопки отмены. Закрывает форму без сохранения.
+        /// Обработчик нажатия кнопки отмены
         /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="eventArgs">Аргументы события.</param>
         private void CancelButton_Click(object sender, EventArgs eventArgs)
         {
             DialogResult = DialogResult.Cancel;

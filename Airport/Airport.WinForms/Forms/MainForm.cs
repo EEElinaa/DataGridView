@@ -4,6 +4,16 @@ using Airport.Domain.Models;
 using Airport.Services.Contracts;
 using Airport.WinForms.Formatters;
 using Airport.WinForms.Forms.Constants;
+
+// Импорты для констант из отдельных файлов
+using FormattingConstants = Airport.WinForms.Forms.Constants.FormattingConstants;
+using ComboBoxItemsConstants = Airport.WinForms.Forms.Constants.ComboBoxItemsConstants;
+using ColorsConstants = Airport.WinForms.Forms.Constants.ColorsConstants;
+using FontsConstants = Airport.WinForms.Forms.Constants.FontsConstants;
+using MessagesConstants = Airport.WinForms.Forms.Constants.MessagesConstants;
+using IconsConstants = Airport.WinForms.Forms.Constants.IconsConstants;
+using DataGridViewConstants = Airport.WinForms.Forms.Constants.DataGridViewConstants;
+
 namespace Airport.WinForms.Forms
 {
     /// <summary>
@@ -60,15 +70,16 @@ namespace Airport.WinForms.Forms
         {
             try
             {
-                var iconsPath = Path.Combine(Application.StartupPath, UiConstants.Icons.IconsFolder);
+                var iconsPath = Path.Combine(Application.StartupPath, IconsConstants.IconsFolder);
+
                 if (!Directory.Exists(iconsPath))
                 {
                     System.Diagnostics.Debug.WriteLine(
-                        string.Format(UiConstants.Messages.IconsNotFound, iconsPath));
+                        string.Format(MessagesConstants.IconsNotFound, iconsPath));
                     return;
                 }
-                const int iconSize = UiConstants.Icons.IconSize;
-                var addIconPath = Path.Combine(iconsPath, UiConstants.Icons.AddIcon);
+                const int iconSize = IconsConstants.IconSize;
+                var addIconPath = Path.Combine(iconsPath, IconsConstants.AddIcon);
                 if (File.Exists(addIconPath))
                 {
                     using (var originalImage = Image.FromFile(addIconPath))
@@ -78,7 +89,7 @@ namespace Airport.WinForms.Forms
                     AddFlightButton.ImageAlign = ContentAlignment.MiddleLeft;
                     AddFlightButton.TextImageRelation = TextImageRelation.ImageBeforeText;
                 }
-                var editIconPath = Path.Combine(iconsPath, UiConstants.Icons.EditIcon);
+                var editIconPath = Path.Combine(iconsPath, IconsConstants.EditIcon);
                 if (File.Exists(editIconPath))
                 {
                     using (var originalImage = Image.FromFile(editIconPath))
@@ -88,7 +99,7 @@ namespace Airport.WinForms.Forms
                     EditFlightButton.ImageAlign = ContentAlignment.MiddleLeft;
                     EditFlightButton.TextImageRelation = TextImageRelation.ImageBeforeText;
                 }
-                var deleteIconPath = Path.Combine(iconsPath, UiConstants.Icons.DeleteIcon);
+                var deleteIconPath = Path.Combine(iconsPath, IconsConstants.DeleteIcon);
                 if (File.Exists(deleteIconPath))
                 {
                     using (var originalImage = Image.FromFile(deleteIconPath))
@@ -99,26 +110,26 @@ namespace Airport.WinForms.Forms
                     DeleteFlightButton.TextImageRelation = TextImageRelation.ImageBeforeText;
                 }
                 AddFlightButton.Size = new Size(
-                    UiConstants.Icons.ButtonWidthWithIcon,
-                    UiConstants.Icons.ButtonHeightWithIcon);
+                    IconsConstants.ButtonWidthWithIcon,
+                    IconsConstants.ButtonHeightWithIcon);
                 EditFlightButton.Size = new Size(
-                    UiConstants.Icons.ButtonWidthWithIcon,
-                    UiConstants.Icons.ButtonHeightWithIcon);
+                    IconsConstants.ButtonWidthWithIcon,
+                    IconsConstants.ButtonHeightWithIcon);
                 DeleteFlightButton.Size = new Size(
-                    UiConstants.Icons.ButtonWidthWithIcon,
-                    UiConstants.Icons.ButtonHeightWithIcon);
+                    IconsConstants.ButtonWidthWithIcon,
+                    IconsConstants.ButtonHeightWithIcon);
                 EditFlightButton.Location = new Point(
-                    AddFlightButton.Right + 10,
+                    AddFlightButton.Right + IconsConstants.ButtonSpacing,
                     AddFlightButton.Top);
                 DeleteFlightButton.Location = new Point(
-                    EditFlightButton.Right + 10,
+                    EditFlightButton.Right + IconsConstants.ButtonSpacing,
                     EditFlightButton.Top);
-                System.Diagnostics.Debug.WriteLine(UiConstants.Messages.IconsLoaded);
+                System.Diagnostics.Debug.WriteLine(MessagesConstants.IconsLoaded);
             }
             catch (Exception exception)
             {
                 System.Diagnostics.Debug.WriteLine(
-                    string.Format(UiConstants.Messages.IconsError, exception.Message));
+                    string.Format(MessagesConstants.IconsError, exception.Message));
             }
         }
 
@@ -137,88 +148,89 @@ namespace Airport.WinForms.Forms
             }
             return resizedImage;
         }
+
         /// <summary>
         /// Настраивает отображение DataGridView
         /// </summary>
         private void ConfigureDataGridView()
         {
             FlightsDataGridView.AutoGenerateColumns = false;
-            FlightsDataGridView.AlternatingRowsDefaultCellStyle.BackColor = UiConstants.Colors.DataGridViewAlternatingRowColor;
+            FlightsDataGridView.AlternatingRowsDefaultCellStyle.BackColor = ColorsConstants.DataGridViewAlternatingRowColor;
             FlightsDataGridView.DefaultCellStyle.Font = new Font(
-                UiConstants.Fonts.DefaultFontName,
-                UiConstants.Fonts.DefaultFontSize);
+                FontsConstants.DefaultFontName,
+                FontsConstants.DefaultFontSize);
             FlightsDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font(
-                UiConstants.Fonts.DefaultFontName,
-                UiConstants.Fonts.HeaderFontSize,
+                FontsConstants.DefaultFontName,
+                FontsConstants.HeaderFontSize,
                 FontStyle.Bold);
-            FlightsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = UiConstants.Colors.DataGridViewHeaderBackColor;
-            FlightsDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = UiConstants.Colors.DataGridViewHeaderForeColor;
+            FlightsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = ColorsConstants.DataGridViewHeaderBackColor;
+            FlightsDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = ColorsConstants.DataGridViewHeaderForeColor;
             var flightNumberColumn = new DataGridViewTextBoxColumn
             {
                 Name = "FlightNumber",
                 HeaderText = "Номер рейса",
                 DataPropertyName = nameof(Flight.FlightNumber),
-                Width = UiConstants.DataGridView.FlightNumberWidth
+                Width = DataGridViewConstants.FlightNumberWidth
             };
             var aircraftTypeColumn = new DataGridViewTextBoxColumn
             {
                 Name = "AircraftType",
                 HeaderText = "Тип самолёта",
                 DataPropertyName = nameof(Flight.AircraftType),
-                Width = UiConstants.DataGridView.AircraftTypeWidth
+                Width = DataGridViewConstants.AircraftTypeWidth
             };
             var arrivalTimeColumn = new DataGridViewTextBoxColumn
             {
                 Name = "ArrivalTime",
                 HeaderText = "Время прибытия",
                 DataPropertyName = nameof(Flight.ArrivalTime),
-                Width = UiConstants.DataGridView.ArrivalTimeWidth
+                Width = DataGridViewConstants.ArrivalTimeWidth
             };
             var passengerCountColumn = new DataGridViewTextBoxColumn
             {
                 Name = "PassengerCount",
                 HeaderText = "Пассажиры",
                 DataPropertyName = nameof(Flight.PassengerCount),
-                Width = UiConstants.DataGridView.PassengerCountWidth
+                Width = DataGridViewConstants.PassengerCountWidth
             };
             var passengerFeeColumn = new DataGridViewTextBoxColumn
             {
                 Name = "PassengerFee",
                 HeaderText = "Сбор с пассажира",
                 DataPropertyName = nameof(Flight.PassengerFee),
-                Width = UiConstants.DataGridView.PassengerFeeWidth
+                Width = DataGridViewConstants.PassengerFeeWidth
             };
             var crewCountColumn = new DataGridViewTextBoxColumn
             {
                 Name = "CrewCount",
                 HeaderText = "Экипаж",
                 DataPropertyName = nameof(Flight.CrewCount),
-                Width = UiConstants.DataGridView.CrewCountWidth
+                Width = DataGridViewConstants.CrewCountWidth
             };
             var crewFeeColumn = new DataGridViewTextBoxColumn
             {
                 Name = "CrewFee",
                 HeaderText = "Сбор с экипажа",
                 DataPropertyName = nameof(Flight.CrewFee),
-                Width = UiConstants.DataGridView.CrewFeeWidth
+                Width = DataGridViewConstants.CrewFeeWidth
             };
             var surchargePercentColumn = new DataGridViewTextBoxColumn
             {
                 Name = "SurchargePercent",
                 HeaderText = "Надбавка, %",
                 DataPropertyName = nameof(Flight.ServiceSurchargePercent),
-                Width = UiConstants.DataGridView.SurchargePercentWidth
+                Width = DataGridViewConstants.SurchargePercentWidth
             };
             var revenueColumn = new DataGridViewTextBoxColumn
             {
                 Name = "Revenue",
                 HeaderText = "Выручка",
-                Width = UiConstants.DataGridView.RevenueWidth,
+                Width = DataGridViewConstants.RevenueWidth,
                 ReadOnly = true,
                 DefaultCellStyle = new DataGridViewCellStyle
                 {
-                    ForeColor = UiConstants.Colors.RevenueForeColor,
-                    Font = new Font(UiConstants.Fonts.DefaultFontName, UiConstants.Fonts.DefaultFontSize, FontStyle.Bold)
+                    ForeColor = ColorsConstants.RevenueForeColor,
+                    Font = new Font(FontsConstants.DefaultFontName, FontsConstants.DefaultFontSize, FontStyle.Bold)
                 }
             };
             FlightsDataGridView.Columns.AddRange(new DataGridViewColumn[]
@@ -233,6 +245,7 @@ namespace Airport.WinForms.Forms
                 surchargePercentColumn,
                 revenueColumn
             });
+
             FlightsDataGridView.CellFormatting += FlightsDataGridView_CellFormatting!;
         }
 
@@ -268,7 +281,6 @@ namespace Airport.WinForms.Forms
             }
             var column = FlightsDataGridView.Columns[eventArgs.ColumnIndex];
             var flight = FlightsDataGridView.Rows[eventArgs.RowIndex].DataBoundItem as Flight;
-
             if (flight == null)
             {
                 return;
@@ -299,8 +311,8 @@ namespace Airport.WinForms.Forms
             else if (column.Name == "SurchargePercent")
             {
                 eventArgs.Value = string.Format("{0}{1}",
-                    flight.ServiceSurchargePercent.ToString(UiConstants.Formatting.PercentFormat),
-                    UiConstants.Formatting.PercentSymbol);
+                    flight.ServiceSurchargePercent.ToString(FormattingConstants.PercentFormat),
+                    FormattingConstants.PercentSymbol);
                 eventArgs.FormattingApplied = true;
             }
         }
@@ -311,6 +323,7 @@ namespace Airport.WinForms.Forms
         private void AddFlightButton_Click(object? sender, EventArgs eventArgs)
         {
             using var form = new FlightForm();
+
             if (form.ShowDialog() == DialogResult.OK && form.ResultFlight != null)
             {
                 var flight = form.ResultFlight;
@@ -329,8 +342,8 @@ namespace Airport.WinForms.Forms
             if (selectedFlight == null)
             {
                 MessageBox.Show(
-                    UiConstants.Messages.SelectFlightForEdit,
-                    UiConstants.Messages.Attention,
+                    MessagesConstants.SelectFlightForEdit,
+                    MessagesConstants.Attention,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 return;
@@ -354,8 +367,8 @@ namespace Airport.WinForms.Forms
                 FlightsDataGridView.Refresh();
                 UpdateStatistics();
                 MessageBox.Show(
-                    string.Format(UiConstants.Messages.SuccessEdit, originalFlightNumber),
-                    UiConstants.Messages.SuccessTitle,
+                    string.Format(MessagesConstants.SuccessEdit, originalFlightNumber),
+                    MessagesConstants.SuccessTitle,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
@@ -370,15 +383,15 @@ namespace Airport.WinForms.Forms
             if (selectedFlight == null)
             {
                 MessageBox.Show(
-                    UiConstants.Messages.SelectFlightForDelete,
-                    UiConstants.Messages.Attention,
+                    MessagesConstants.SelectFlightForDelete,
+                    MessagesConstants.Attention,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 return;
             }
             var confirmResult = MessageBox.Show(
-                string.Format(UiConstants.Messages.ConfirmDelete, selectedFlight.FlightNumber),
-                UiConstants.Messages.ConfirmDeleteTitle,
+                string.Format(MessagesConstants.ConfirmDelete, selectedFlight.FlightNumber),
+                MessagesConstants.ConfirmDeleteTitle,
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (confirmResult == DialogResult.Yes)
@@ -386,14 +399,14 @@ namespace Airport.WinForms.Forms
                 flightService.DeleteFlight(selectedFlight.Id);
                 flightsBinding.Remove(selectedFlight);
                 UpdateStatistics();
-
                 MessageBox.Show(
-                    string.Format(UiConstants.Messages.SuccessDelete, selectedFlight.FlightNumber),
-                    UiConstants.Messages.SuccessTitle,
+                    string.Format(MessagesConstants.SuccessDelete, selectedFlight.FlightNumber),
+                    MessagesConstants.SuccessTitle,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
         }
+
         /// <summary>
         /// Получает выбранный в DataGridView рейс
         /// </summary>
@@ -437,7 +450,7 @@ namespace Airport.WinForms.Forms
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(
-                    string.Format(UiConstants.Messages.StatisticsError, ex.Message));
+                    string.Format(MessagesConstants.StatisticsError, ex.Message));
             }
         }
     }

@@ -1,6 +1,10 @@
 using System.Globalization;
 using Airport.Domain.Models;
 using Airport.WinForms.Forms.Constants;
+
+using FormattingConstants = Airport.WinForms.Forms.Constants.FormattingConstants;
+using ComboBoxItemsConstants = Airport.WinForms.Forms.Constants.ComboBoxItemsConstants;
+
 namespace Airport.WinForms.Formatters
 {
     /// <summary>
@@ -15,7 +19,7 @@ namespace Airport.WinForms.Formatters
         /// <returns>Отформатированная строка даты и времени</returns>
         public static string FormatDateTime(DateTime dateTime)
         {
-            return dateTime.ToString(UiConstants.Formatting.DateTimeFormat, CultureInfo.CurrentCulture);
+            return dateTime.ToString(FormattingConstants.DateTimeFormat, CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -25,7 +29,7 @@ namespace Airport.WinForms.Formatters
         /// <returns>Отформатированная строка с валютой</returns>
         public static string FormatMoney(decimal amount)
         {
-            return amount.ToString(UiConstants.Formatting.CurrencyFormat, CultureInfo.CurrentCulture);
+            return amount.ToString(FormattingConstants.CurrencyFormat, CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -37,9 +41,9 @@ namespace Airport.WinForms.Formatters
         {
             return aircraftType switch
             {
-                AircraftType.Boeing => UiConstants.ComboBoxItems.Boeing,
-                AircraftType.Airbus => UiConstants.ComboBoxItems.Airbus,
-                AircraftType.Oak => UiConstants.ComboBoxItems.Oak,
+                AircraftType.Boeing => ComboBoxItemsConstants.Boeing,
+                AircraftType.Airbus => ComboBoxItemsConstants.Airbus,
+                AircraftType.Oak => ComboBoxItemsConstants.Oak,
                 _ => aircraftType.ToString()
             };
         }
