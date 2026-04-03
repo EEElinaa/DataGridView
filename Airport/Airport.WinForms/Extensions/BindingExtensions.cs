@@ -28,7 +28,6 @@ namespace Airport.WinForms.Extensions
         {
             var targetPropertyName = GetMemberName(targetProperty);
             var sourcePropertyName = GetMemberName(sourceProperty);
-
             control.DataBindings.Add(
                 targetPropertyName,
                 source,
@@ -36,23 +35,18 @@ namespace Airport.WinForms.Extensions
                 false,
                 DataSourceUpdateMode.OnPropertyChanged
             );
-
             if (errorProvider != null)
             {
                 control.Validating += (_, e) =>
                 {
                     var property = source.GetType().GetProperty(sourcePropertyName);
                     var value = property?.GetValue(source);
-
                     var validationContext = new ValidationContext(source)
                     {
                         MemberName = sourcePropertyName
                     };
-
                     var validationResults = new List<ValidationResult>();
-
                     errorProvider.SetError(control, null);
-
                     if (!Validator.TryValidateProperty(value, validationContext, validationResults))
                     {
                         foreach (var error in validationResults)
@@ -78,7 +72,6 @@ namespace Airport.WinForms.Extensions
                 var memberExpression = (MemberExpression)unaryExpression.Operand;
                 return memberExpression.Member.Name;
             }
-
             var memberExp = (MemberExpression)expression.Body;
             return memberExp.Member.Name;
         }

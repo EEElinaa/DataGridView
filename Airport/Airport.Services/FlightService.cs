@@ -1,4 +1,3 @@
-#nullable disable
 using Airport.Domain.Constants;
 using Airport.Domain.Models;
 using Airport.Services.Contracts;
@@ -35,7 +34,7 @@ namespace Airport.Services
         /// </summary>
         /// <param name="id">Идентификатор рейса</param>
         /// <returns>Найденный рейс или null</returns>
-        public Flight GetFlightById(int id)
+        public Flight? GetFlightById(int id)
         {
             if (id < BusinessConstants.MinValidId)
             {

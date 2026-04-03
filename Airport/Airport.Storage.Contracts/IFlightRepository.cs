@@ -17,7 +17,7 @@ namespace Airport.Storage.Contracts
         /// </summary>
         /// <param name="id">Идентификатор рейса</param>
         /// <returns>Рейс или null, если не найден</returns>
-        Flight GetById(int id);
+        Flight? GetById(int id);
 
         /// <summary>
         /// Добавляет новый рейс в хранилище

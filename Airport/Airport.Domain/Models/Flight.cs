@@ -1,7 +1,5 @@
-#nullable disable
 using System.ComponentModel.DataAnnotations;
 using Airport.Domain.Constants;
-
 namespace Airport.Domain.Models
 {
     /// <summary>
@@ -59,7 +57,7 @@ namespace Airport.Domain.Models
         [StringLength(BusinessConstants.FlightNumberMaxLength,
             MinimumLength = BusinessConstants.FlightNumberMinLength,
             ErrorMessage = "Номер рейса должен содержать от 2 до 20 символов")]
-        public string FlightNumber { get; set; }
+        public string FlightNumber { get; set; } = string.Empty;
 
         /// <summary>
         /// Тип самолёта (Boeing, Airbus, OAK)

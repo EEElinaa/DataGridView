@@ -1,5 +1,5 @@
 using System.Globalization;
-using Airport.Domain.Constants;
+using Airport.Domain.Models;
 using Airport.WinForms.Forms.Constants;
 namespace Airport.WinForms.Formatters
 {
@@ -39,7 +39,7 @@ namespace Airport.WinForms.Formatters
             {
                 AircraftType.Boeing => UiConstants.ComboBoxItems.Boeing,
                 AircraftType.Airbus => UiConstants.ComboBoxItems.Airbus,
-                AircraftType.OAK => UiConstants.ComboBoxItems.OAK,
+                AircraftType.Oak => UiConstants.ComboBoxItems.Oak,
                 _ => aircraftType.ToString()
             };
         }

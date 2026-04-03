@@ -30,7 +30,7 @@ namespace Airport.Storage.InMemory
             {
                 return null;
             }
-            return flights.FirstOrDefault(flight => flight.Id == id)!;
+            return flights.FirstOrDefault(flight => flight.Id == id);
         }
 
         /// <summary>

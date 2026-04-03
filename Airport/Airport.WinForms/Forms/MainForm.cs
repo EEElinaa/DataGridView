@@ -1,4 +1,3 @@
-#nullable disable
 using System.ComponentModel;
 using System.Drawing.Drawing2D;
 using Airport.Domain.Models;
@@ -14,7 +13,7 @@ namespace Airport.WinForms.Forms
     public partial class MainForm : Form
     {
         private readonly IFlightService flightService;
-        private BindingList<Flight> flightsBinding;
+        private BindingList<Flight> flightsBinding = null!;
 
         /// <summary>
         /// Конструктор главной формы
@@ -30,7 +29,7 @@ namespace Airport.WinForms.Forms
             UpdateStatistics();
             SetupEventHandlers();
             SetButtonIcons();
-            FormClosing += MainForm_FormClosing;
+            FormClosing += MainForm_FormClosing!;
         }
 
         /// <summary>
@@ -38,16 +37,16 @@ namespace Airport.WinForms.Forms
         /// </summary>
         private void SetupEventHandlers()
         {
-            AddFlightButton.Click += AddFlightButton_Click;
-            EditFlightButton.Click += EditFlightButton_Click;
-            DeleteFlightButton.Click += DeleteFlightButton_Click;
+            AddFlightButton.Click += AddFlightButton_Click!;
+            EditFlightButton.Click += EditFlightButton_Click!;
+            DeleteFlightButton.Click += DeleteFlightButton_Click!;
         }
 
         /// <summary>
         /// Обработчик закрытия формы
         /// Отписывается от событий для предотвращения утечек памяти
         /// </summary>
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs eventArgs)
+        private void MainForm_FormClosing(object? sender, FormClosingEventArgs eventArgs)
         {
             AddFlightButton.Click -= AddFlightButton_Click;
             EditFlightButton.Click -= EditFlightButton_Click;
@@ -62,17 +61,13 @@ namespace Airport.WinForms.Forms
             try
             {
                 var iconsPath = Path.Combine(Application.StartupPath, UiConstants.Icons.IconsFolder);
-
                 if (!Directory.Exists(iconsPath))
                 {
                     System.Diagnostics.Debug.WriteLine(
                         string.Format(UiConstants.Messages.IconsNotFound, iconsPath));
                     return;
                 }
-
                 const int iconSize = UiConstants.Icons.IconSize;
-
-                // Загружаем иконку добавления
                 var addIconPath = Path.Combine(iconsPath, UiConstants.Icons.AddIcon);
                 if (File.Exists(addIconPath))
                 {
@@ -83,8 +78,6 @@ namespace Airport.WinForms.Forms
                     AddFlightButton.ImageAlign = ContentAlignment.MiddleLeft;
                     AddFlightButton.TextImageRelation = TextImageRelation.ImageBeforeText;
                 }
-
-                // Загружаем иконку редактирования
                 var editIconPath = Path.Combine(iconsPath, UiConstants.Icons.EditIcon);
                 if (File.Exists(editIconPath))
                 {
@@ -95,8 +88,6 @@ namespace Airport.WinForms.Forms
                     EditFlightButton.ImageAlign = ContentAlignment.MiddleLeft;
                     EditFlightButton.TextImageRelation = TextImageRelation.ImageBeforeText;
                 }
-
-                // Загружаем иконку удаления
                 var deleteIconPath = Path.Combine(iconsPath, UiConstants.Icons.DeleteIcon);
                 if (File.Exists(deleteIconPath))
                 {
@@ -117,10 +108,10 @@ namespace Airport.WinForms.Forms
                     UiConstants.Icons.ButtonWidthWithIcon,
                     UiConstants.Icons.ButtonHeightWithIcon);
                 EditFlightButton.Location = new Point(
-                    AddFlightButton.Right + UiConstants.Icons.ButtonSpacing,
+                    AddFlightButton.Right + 10,
                     AddFlightButton.Top);
                 DeleteFlightButton.Location = new Point(
-                    EditFlightButton.Right + UiConstants.Icons.ButtonSpacing,
+                    EditFlightButton.Right + 10,
                     EditFlightButton.Top);
                 System.Diagnostics.Debug.WriteLine(UiConstants.Messages.IconsLoaded);
             }
@@ -134,10 +125,6 @@ namespace Airport.WinForms.Forms
         /// <summary>
         /// Изменяет размер изображения с сохранением качества
         /// </summary>
-        /// <param name="image">Исходное изображение</param>
-        /// <param name="width">Новая ширина</param>
-        /// <param name="height">Новая высота</param>
-        /// <returns>Измененное изображение</returns>
         private Image ResizeImage(Image image, int width, int height)
         {
             var resizedImage = new Bitmap(width, height);
@@ -150,7 +137,6 @@ namespace Airport.WinForms.Forms
             }
             return resizedImage;
         }
-
         /// <summary>
         /// Настраивает отображение DataGridView
         /// </summary>
@@ -167,7 +153,6 @@ namespace Airport.WinForms.Forms
                 FontStyle.Bold);
             FlightsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = UiConstants.Colors.DataGridViewHeaderBackColor;
             FlightsDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = UiConstants.Colors.DataGridViewHeaderForeColor;
-
             var flightNumberColumn = new DataGridViewTextBoxColumn
             {
                 Name = "FlightNumber",
@@ -175,7 +160,6 @@ namespace Airport.WinForms.Forms
                 DataPropertyName = nameof(Flight.FlightNumber),
                 Width = UiConstants.DataGridView.FlightNumberWidth
             };
-
             var aircraftTypeColumn = new DataGridViewTextBoxColumn
             {
                 Name = "AircraftType",
@@ -183,7 +167,6 @@ namespace Airport.WinForms.Forms
                 DataPropertyName = nameof(Flight.AircraftType),
                 Width = UiConstants.DataGridView.AircraftTypeWidth
             };
-
             var arrivalTimeColumn = new DataGridViewTextBoxColumn
             {
                 Name = "ArrivalTime",
@@ -191,7 +174,6 @@ namespace Airport.WinForms.Forms
                 DataPropertyName = nameof(Flight.ArrivalTime),
                 Width = UiConstants.DataGridView.ArrivalTimeWidth
             };
-
             var passengerCountColumn = new DataGridViewTextBoxColumn
             {
                 Name = "PassengerCount",
@@ -199,7 +181,6 @@ namespace Airport.WinForms.Forms
                 DataPropertyName = nameof(Flight.PassengerCount),
                 Width = UiConstants.DataGridView.PassengerCountWidth
             };
-
             var passengerFeeColumn = new DataGridViewTextBoxColumn
             {
                 Name = "PassengerFee",
@@ -207,7 +188,6 @@ namespace Airport.WinForms.Forms
                 DataPropertyName = nameof(Flight.PassengerFee),
                 Width = UiConstants.DataGridView.PassengerFeeWidth
             };
-
             var crewCountColumn = new DataGridViewTextBoxColumn
             {
                 Name = "CrewCount",
@@ -215,7 +195,6 @@ namespace Airport.WinForms.Forms
                 DataPropertyName = nameof(Flight.CrewCount),
                 Width = UiConstants.DataGridView.CrewCountWidth
             };
-
             var crewFeeColumn = new DataGridViewTextBoxColumn
             {
                 Name = "CrewFee",
@@ -223,7 +202,6 @@ namespace Airport.WinForms.Forms
                 DataPropertyName = nameof(Flight.CrewFee),
                 Width = UiConstants.DataGridView.CrewFeeWidth
             };
-
             var surchargePercentColumn = new DataGridViewTextBoxColumn
             {
                 Name = "SurchargePercent",
@@ -231,7 +209,6 @@ namespace Airport.WinForms.Forms
                 DataPropertyName = nameof(Flight.ServiceSurchargePercent),
                 Width = UiConstants.DataGridView.SurchargePercentWidth
             };
-
             var revenueColumn = new DataGridViewTextBoxColumn
             {
                 Name = "Revenue",
@@ -256,7 +233,7 @@ namespace Airport.WinForms.Forms
                 surchargePercentColumn,
                 revenueColumn
             });
-            FlightsDataGridView.CellFormatting += FlightsDataGridView_CellFormatting;
+            FlightsDataGridView.CellFormatting += FlightsDataGridView_CellFormatting!;
         }
 
         /// <summary>
@@ -282,9 +259,8 @@ namespace Airport.WinForms.Forms
 
         /// <summary>
         /// Обработчик форматирования ячеек DataGridView
-        /// Преобразует данные в читаемый вид (дата, валюта, тип самолёта)
         /// </summary>
-        private void FlightsDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs eventArgs)
+        private void FlightsDataGridView_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs eventArgs)
         {
             if (eventArgs.RowIndex < 0 || eventArgs.ColumnIndex < 0)
             {
@@ -292,6 +268,7 @@ namespace Airport.WinForms.Forms
             }
             var column = FlightsDataGridView.Columns[eventArgs.ColumnIndex];
             var flight = FlightsDataGridView.Rows[eventArgs.RowIndex].DataBoundItem as Flight;
+
             if (flight == null)
             {
                 return;
@@ -308,8 +285,11 @@ namespace Airport.WinForms.Forms
             }
             else if (column.Name == "PassengerFee" || column.Name == "CrewFee")
             {
-                eventArgs.Value = FlightFormatter.FormatMoney((decimal)eventArgs.Value);
-                eventArgs.FormattingApplied = true;
+                if (eventArgs.Value is decimal value)
+                {
+                    eventArgs.Value = FlightFormatter.FormatMoney(value);
+                    eventArgs.FormattingApplied = true;
+                }
             }
             else if (column.Name == "Revenue")
             {
@@ -328,10 +308,9 @@ namespace Airport.WinForms.Forms
         /// <summary>
         /// Обработчик нажатия кнопки добавления рейса
         /// </summary>
-        private void AddFlightButton_Click(object sender, EventArgs eventArgs)
+        private void AddFlightButton_Click(object? sender, EventArgs eventArgs)
         {
             using var form = new FlightForm();
-
             if (form.ShowDialog() == DialogResult.OK && form.ResultFlight != null)
             {
                 var flight = form.ResultFlight;
@@ -344,10 +323,9 @@ namespace Airport.WinForms.Forms
         /// <summary>
         /// Обработчик нажатия кнопки редактирования рейса
         /// </summary>
-        private void EditFlightButton_Click(object sender, EventArgs eventArgs)
+        private void EditFlightButton_Click(object? sender, EventArgs eventArgs)
         {
             var selectedFlight = GetSelectedFlight();
-
             if (selectedFlight == null)
             {
                 MessageBox.Show(
@@ -363,9 +341,7 @@ namespace Airport.WinForms.Forms
             if (form.ShowDialog() == DialogResult.OK && form.ResultFlight != null)
             {
                 var updatedFlight = form.ResultFlight;
-
                 flightService.UpdateFlight(updatedFlight);
-
                 for (var i = 0; i < flightsBinding.Count; i++)
                 {
                     if (flightsBinding[i].Id == originalId)
@@ -388,10 +364,9 @@ namespace Airport.WinForms.Forms
         /// <summary>
         /// Обработчик нажатия кнопки удаления рейса
         /// </summary>
-        private void DeleteFlightButton_Click(object sender, EventArgs eventArgs)
+        private void DeleteFlightButton_Click(object? sender, EventArgs eventArgs)
         {
             var selectedFlight = GetSelectedFlight();
-
             if (selectedFlight == null)
             {
                 MessageBox.Show(
@@ -401,13 +376,11 @@ namespace Airport.WinForms.Forms
                     MessageBoxIcon.Information);
                 return;
             }
-
             var confirmResult = MessageBox.Show(
                 string.Format(UiConstants.Messages.ConfirmDelete, selectedFlight.FlightNumber),
                 UiConstants.Messages.ConfirmDeleteTitle,
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
-
             if (confirmResult == DialogResult.Yes)
             {
                 flightService.DeleteFlight(selectedFlight.Id);
@@ -421,12 +394,10 @@ namespace Airport.WinForms.Forms
                     MessageBoxIcon.Information);
             }
         }
-
         /// <summary>
         /// Получает выбранный в DataGridView рейс
         /// </summary>
-        /// <returns>Выбранный рейс или null, если ничего не выбрано</returns>
-        private Flight GetSelectedFlight()
+        private Flight? GetSelectedFlight()
         {
             if (FlightsDataGridView.SelectedRows.Count > 0)
             {
@@ -440,7 +411,6 @@ namespace Airport.WinForms.Forms
             {
                 return currentFlight;
             }
-
             return null;
         }
 
@@ -452,46 +422,17 @@ namespace Airport.WinForms.Forms
             try
             {
                 var statistics = flightService.CalculateStatistics(flightsBinding);
-                if (TotalFlightsValueLabel != null && !TotalFlightsValueLabel.IsDisposed)
-                {
-                    TotalFlightsValueLabel.Text = statistics.TotalFlights.ToString();
-                }
-                if (TotalPassengersValueLabel != null && !TotalPassengersValueLabel.IsDisposed)
-                {
-                    TotalPassengersValueLabel.Text = statistics.TotalPassengers.ToString();
-                }
-                if (TotalCrewValueLabel != null && !TotalCrewValueLabel.IsDisposed)
-                {
-                    TotalCrewValueLabel.Text = statistics.TotalCrew.ToString();
-                }
-                if (TotalRevenueValueLabel != null && !TotalRevenueValueLabel.IsDisposed)
-                {
-                    TotalRevenueValueLabel.Text = FlightFormatter.FormatMoney(statistics.TotalRevenue);
-                }
-                if (TotalFlightsLabel != null && !TotalFlightsLabel.IsDisposed)
-                {
-                    TotalFlightsLabel.Text = $"Всего рейсов: {statistics.TotalFlights}";
-                }
-                if (TotalPassengersLabel != null && !TotalPassengersLabel.IsDisposed)
-                {
-                    TotalPassengersLabel.Text = $"Всего пассажиров: {statistics.TotalPassengers}";
-                }
-                if (TotalCrewLabel != null && !TotalCrewLabel.IsDisposed)
-                {
-                    TotalCrewLabel.Text = $"Всего экипажа: {statistics.TotalCrew}";
-                }
-                if (TotalRevenueLabel != null && !TotalRevenueLabel.IsDisposed)
-                {
-                    TotalRevenueLabel.Text = $"Общая выручка: {FlightFormatter.FormatMoney(statistics.TotalRevenue)}";
-                }
-                if (MainStatusStrip != null && !MainStatusStrip.IsDisposed)
-                {
-                    MainStatusStrip.Visible = statistics.TotalFlights > 0;
-                }
-                if (StatisticsGroupBox != null && !StatisticsGroupBox.IsDisposed)
-                {
-                    StatisticsGroupBox.Visible = statistics.TotalFlights > 0;
-                }
+                TotalFlightsValueLabel.Text = statistics.TotalFlights.ToString();
+                TotalPassengersValueLabel.Text = statistics.TotalPassengers.ToString();
+                TotalCrewValueLabel.Text = statistics.TotalCrew.ToString();
+                TotalRevenueValueLabel.Text = FlightFormatter.FormatMoney(statistics.TotalRevenue);
+                TotalFlightsLabel.Text = $"Всего рейсов: {statistics.TotalFlights}";
+                TotalPassengersLabel.Text = $"Всего пассажиров: {statistics.TotalPassengers}";
+                TotalCrewLabel.Text = $"Всего экипажа: {statistics.TotalCrew}";
+                TotalRevenueLabel.Text = $"Общая выручка: {FlightFormatter.FormatMoney(statistics.TotalRevenue)}";
+                bool hasData = statistics.TotalFlights > 0;
+                MainStatusStrip.Visible = hasData;
+                StatisticsGroupBox.Visible = hasData;
             }
             catch (Exception ex)
             {

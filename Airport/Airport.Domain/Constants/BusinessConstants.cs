@@ -50,22 +50,10 @@ namespace Airport.Domain.Constants
         /// <summary>Минимальное положительное значение ID</summary>
         public const int MinValidId = 1;
 
-        /// <summary>Значение по умолчанию для пустых числовых полей</summary>
-        public const int DefaultEmptyValue = 0;
-
         /// <summary>Значение по умолчанию для пустых десятичных полей</summary>
         public const decimal DefaultEmptyDecimal = 0m;
 
         /// <summary>Флаг отсутствия данных</summary>
         public const int NoDataFlag = 0;
-
-        /// <summary>Порог для округления при расчетах</summary>
-        public const int RoundingDecimalPlaces = 2;
-
-        /// <summary>Максимальное количество элементов в списке по умолчанию</summary>
-        public const int DefaultMaxListSize = 1000;
-
-        /// <summary>Таймаут операций в миллисекундах</summary>
-        public const int DefaultOperationTimeoutMs = 30000;
     }
 }

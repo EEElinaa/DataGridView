@@ -17,7 +17,7 @@ namespace Airport.Services.Contracts
         /// </summary>
         /// <param name="id">Идентификатор рейса</param>
         /// <returns>Найденный рейс или null</returns>
-        Flight GetFlightById(int id);
+        Flight? GetFlightById(int id);
 
         /// <summary>
         /// Добавляет новый рейс

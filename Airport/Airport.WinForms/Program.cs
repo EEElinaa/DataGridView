@@ -1,13 +1,9 @@
-using Airport.Domain.Constants;
 using Airport.Domain.Models;
 using Airport.Services;
 using Airport.Services.Contracts;
 using Airport.Storage.Contracts;
 using Airport.Storage.InMemory;
 using Airport.WinForms.Forms;
-using System;
-using System.Windows.Forms;
-
 namespace Airport.WinForms
 {
     /// <summary>
@@ -23,11 +19,9 @@ namespace Airport.WinForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            var flightRepository = new FlightRepository();
+            IFlightRepository flightRepository = new FlightRepository();
             IFlightService flightService = new FlightService(flightRepository);
             AddSampleData(flightRepository);
-
             Application.Run(new MainForm(flightService));
         }
 
@@ -48,7 +42,6 @@ namespace Airport.WinForms
                     crewCount: 15,
                     crewFee: 80m,
                     serviceSurchargePercent: 10m),
-
                 new Flight(
                     flightNumber: "A5678",
                     aircraftType: AircraftType.Airbus,
@@ -58,10 +51,9 @@ namespace Airport.WinForms
                     crewCount: 14,
                     crewFee: 85m,
                     serviceSurchargePercent: 12m),
-
                 new Flight(
                     flightNumber: "D91011",
-                    aircraftType: AircraftType.OAK,
+                    aircraftType: AircraftType.Oak,
                     arrivalTime: DateTime.Now.AddHours(6),
                     passengerCount: 220,
                     passengerFee: 45m,
@@ -69,7 +61,6 @@ namespace Airport.WinForms
                     crewFee: 75m,
                     serviceSurchargePercent: 8m)
             };
-
             foreach (var flight in sampleFlights)
             {
                 repository.Add(flight);

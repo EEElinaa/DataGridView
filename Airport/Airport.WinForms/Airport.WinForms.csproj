@@ -30,7 +30,5 @@
     <ProjectReference Include="..\Airport.Domain\Airport.Domain.csproj" />
     <ProjectReference Include="..\Airport.Services.Contracts\Airport.Services.Contracts.csproj" />
     <ProjectReference Include="..\Airport.Services\Airport.Services.csproj" />
-    <ProjectReference Include="..\Airport.Storage.InMemory\Airport.Storage.InMemory.csproj" />
   </ItemGroup>
-
 </Project>

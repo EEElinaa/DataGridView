@@ -87,41 +87,29 @@ namespace Airport.WinForms.Forms
             FlightInfoGroupBox.Controls.Add(CrewFeeNumericUpDown);
             FlightInfoGroupBox.Controls.Add(ServiceSurchargePercentLabel);
             FlightInfoGroupBox.Controls.Add(ServiceSurchargePercentNumericUpDown);
-            FlightInfoGroupBox.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.GroupBoxLeft,
-                UiConstants.FlightFormLayout.GroupBoxTop);
+            FlightInfoGroupBox.Location = new System.Drawing.Point(12, 12);
             FlightInfoGroupBox.Name = "FlightInfoGroupBox";
-            FlightInfoGroupBox.Size = new System.Drawing.Size(
-                UiConstants.FlightFormLayout.GroupBoxWidth,
-                UiConstants.FlightFormLayout.GroupBoxHeight);
+            FlightInfoGroupBox.Size = new System.Drawing.Size(520, 380);
             FlightInfoGroupBox.TabIndex = 0;
             FlightInfoGroupBox.TabStop = false;
             FlightInfoGroupBox.Text = "Информация о рейсе";
 
             // FlightNumberLabel
             FlightNumberLabel.AutoSize = true;
-            FlightNumberLabel.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.LabelLeft,
-                UiConstants.FlightFormLayout.FirstControlTop);
+            FlightNumberLabel.Location = new System.Drawing.Point(20, 35);
             FlightNumberLabel.Name = "FlightNumberLabel";
             FlightNumberLabel.Size = new System.Drawing.Size(109, 20);
             FlightNumberLabel.Text = "Номер рейса:";
 
             // FlightNumberTextBox
-            FlightNumberTextBox.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.ControlLeft,
-                UiConstants.FlightFormLayout.FirstControlTop);
+            FlightNumberTextBox.Location = new System.Drawing.Point(180, 32);
             FlightNumberTextBox.Name = "FlightNumberTextBox";
-            FlightNumberTextBox.Size = new System.Drawing.Size(
-                UiConstants.FlightFormLayout.ControlWidth,
-                UiConstants.FlightFormLayout.FirstControlTop);
+            FlightNumberTextBox.Size = new System.Drawing.Size(300, 27);
             FlightNumberTextBox.TabIndex = 0;
 
             // AircraftTypeLabel
             AircraftTypeLabel.AutoSize = true;
-            AircraftTypeLabel.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.LabelLeft,
-                UiConstants.FlightFormLayout.SecondControlTop);
+            AircraftTypeLabel.Location = new System.Drawing.Point(20, 75);
             AircraftTypeLabel.Name = "AircraftTypeLabel";
             AircraftTypeLabel.Size = new System.Drawing.Size(109, 20);
             AircraftTypeLabel.Text = "Тип самолёта:";
@@ -129,20 +117,14 @@ namespace Airport.WinForms.Forms
             // AircraftTypeComboBox
             AircraftTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             AircraftTypeComboBox.Items.AddRange(UiConstants.ComboBoxItems.AllItems);
-            AircraftTypeComboBox.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.ControlLeft,
-                UiConstants.FlightFormLayout.SecondControlTop);
+            AircraftTypeComboBox.Location = new System.Drawing.Point(180, 72);
             AircraftTypeComboBox.Name = "AircraftTypeComboBox";
-            AircraftTypeComboBox.Size = new System.Drawing.Size(
-                UiConstants.FlightFormLayout.ControlWidth,
-                UiConstants.FlightFormLayout.SecondControlTop + 1);
+            AircraftTypeComboBox.Size = new System.Drawing.Size(300, 28);
             AircraftTypeComboBox.TabIndex = 1;
 
             // ArrivalTimeLabel
             ArrivalTimeLabel.AutoSize = true;
-            ArrivalTimeLabel.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.LabelLeft,
-                UiConstants.FlightFormLayout.ThirdControlTop);
+            ArrivalTimeLabel.Location = new System.Drawing.Point(20, 115);
             ArrivalTimeLabel.Name = "ArrivalTimeLabel";
             ArrivalTimeLabel.Size = new System.Drawing.Size(129, 20);
             ArrivalTimeLabel.Text = "Время прибытия:";
@@ -150,171 +132,119 @@ namespace Airport.WinForms.Forms
             // ArrivalTimeDateTimePicker
             ArrivalTimeDateTimePicker.CustomFormat = UiConstants.Formatting.DateTimeFormat;
             ArrivalTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            ArrivalTimeDateTimePicker.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.ControlLeft,
-                UiConstants.FlightFormLayout.ThirdControlTop);
+            ArrivalTimeDateTimePicker.Location = new System.Drawing.Point(180, 112);
             ArrivalTimeDateTimePicker.Name = "ArrivalTimeDateTimePicker";
-            ArrivalTimeDateTimePicker.Size = new System.Drawing.Size(
-                UiConstants.FlightFormLayout.ControlWidth,
-                UiConstants.FlightFormLayout.ThirdControlTop);
+            ArrivalTimeDateTimePicker.Size = new System.Drawing.Size(300, 27);
             ArrivalTimeDateTimePicker.TabIndex = 2;
 
             // PassengerCountLabel
             PassengerCountLabel.AutoSize = true;
-            PassengerCountLabel.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.LabelLeft,
-                UiConstants.FlightFormLayout.FourthControlTop);
+            PassengerCountLabel.Location = new System.Drawing.Point(20, 155);
             PassengerCountLabel.Name = "PassengerCountLabel";
             PassengerCountLabel.Size = new System.Drawing.Size(189, 20);
             PassengerCountLabel.Text = "Количество пассажиров:";
 
             // PassengerCountNumericUpDown
-            PassengerCountNumericUpDown.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.ControlLeft + 70,
-                UiConstants.FlightFormLayout.FourthControlTop);
-            PassengerCountNumericUpDown.Maximum = UiConstants.NumericLimits.MaxPassengerCount;
-            PassengerCountNumericUpDown.Minimum = UiConstants.NumericLimits.MinPassengerCount;
+            PassengerCountNumericUpDown.Location = new System.Drawing.Point(250, 153);
+            PassengerCountNumericUpDown.Maximum = 500;
+            PassengerCountNumericUpDown.Minimum = 0;
             PassengerCountNumericUpDown.Name = "PassengerCountNumericUpDown";
-            PassengerCountNumericUpDown.Size = new System.Drawing.Size(
-                UiConstants.FlightFormLayout.ControlWidthMedium,
-                UiConstants.FlightFormLayout.FourthControlTop);
+            PassengerCountNumericUpDown.Size = new System.Drawing.Size(100, 27);
             PassengerCountNumericUpDown.TabIndex = 3;
 
             // PassengerFeeLabel
             PassengerFeeLabel.AutoSize = true;
-            PassengerFeeLabel.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.LabelLeft,
-                UiConstants.FlightFormLayout.FifthControlTop);
+            PassengerFeeLabel.Location = new System.Drawing.Point(20, 195);
             PassengerFeeLabel.Name = "PassengerFeeLabel";
             PassengerFeeLabel.Size = new System.Drawing.Size(159, 20);
             PassengerFeeLabel.Text = "Сбор на пассажира:";
 
             // PassengerFeeNumericUpDown
-            PassengerFeeNumericUpDown.DecimalPlaces = UiConstants.NumericLimits.DecimalPlaces;
-            PassengerFeeNumericUpDown.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.ControlLeft + 40,
-                UiConstants.FlightFormLayout.FifthControlTop);
-            PassengerFeeNumericUpDown.Maximum = UiConstants.NumericLimits.MaxFee;
-            PassengerFeeNumericUpDown.Minimum = UiConstants.NumericLimits.MinFee;
+            PassengerFeeNumericUpDown.DecimalPlaces = 2;
+            PassengerFeeNumericUpDown.Location = new System.Drawing.Point(220, 193);
+            PassengerFeeNumericUpDown.Maximum = 10000m;
+            PassengerFeeNumericUpDown.Minimum = 0m;
             PassengerFeeNumericUpDown.Name = "PassengerFeeNumericUpDown";
-            PassengerFeeNumericUpDown.Size = new System.Drawing.Size(
-                UiConstants.FlightFormLayout.ControlWidth,
-                UiConstants.FlightFormLayout.FifthControlTop);
+            PassengerFeeNumericUpDown.Size = new System.Drawing.Size(260, 27);
             PassengerFeeNumericUpDown.TabIndex = 4;
 
             // CrewCountLabel
             CrewCountLabel.AutoSize = true;
-            CrewCountLabel.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.LabelLeft,
-                UiConstants.FlightFormLayout.SixthControlTop);
+            CrewCountLabel.Location = new System.Drawing.Point(20, 235);
             CrewCountLabel.Name = "CrewCountLabel";
             CrewCountLabel.Size = new System.Drawing.Size(169, 20);
             CrewCountLabel.Text = "Количество экипажа:";
 
             // CrewCountNumericUpDown
-            CrewCountNumericUpDown.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.ControlLeft + 50,
-                UiConstants.FlightFormLayout.SixthControlTop);
-            CrewCountNumericUpDown.Maximum = UiConstants.NumericLimits.MaxCrewCount;
-            CrewCountNumericUpDown.Minimum = UiConstants.NumericLimits.MinCrewCount;
+            CrewCountNumericUpDown.Location = new System.Drawing.Point(230, 233);
+            CrewCountNumericUpDown.Maximum = 50;
+            CrewCountNumericUpDown.Minimum = 0;
             CrewCountNumericUpDown.Name = "CrewCountNumericUpDown";
-            CrewCountNumericUpDown.Size = new System.Drawing.Size(
-                UiConstants.FlightFormLayout.ControlWidthMedium,
-                UiConstants.FlightFormLayout.SixthControlTop);
+            CrewCountNumericUpDown.Size = new System.Drawing.Size(100, 27);
             CrewCountNumericUpDown.TabIndex = 5;
 
             // CrewFeeLabel
             CrewFeeLabel.AutoSize = true;
-            CrewFeeLabel.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.LabelLeft,
-                UiConstants.FlightFormLayout.SeventhControlTop);
+            CrewFeeLabel.Location = new System.Drawing.Point(20, 275);
             CrewFeeLabel.Name = "CrewFeeLabel";
             CrewFeeLabel.Size = new System.Drawing.Size(139, 20);
             CrewFeeLabel.Text = "Сбор на экипаж:";
 
             // CrewFeeNumericUpDown
-            CrewFeeNumericUpDown.DecimalPlaces = UiConstants.NumericLimits.DecimalPlaces;
-            CrewFeeNumericUpDown.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.ControlLeft + 20,
-                UiConstants.FlightFormLayout.SeventhControlTop);
-            CrewFeeNumericUpDown.Maximum = UiConstants.NumericLimits.MaxFee;
-            CrewFeeNumericUpDown.Minimum = UiConstants.NumericLimits.MinFee;
+            CrewFeeNumericUpDown.DecimalPlaces = 2;
+            CrewFeeNumericUpDown.Location = new System.Drawing.Point(200, 273);
+            CrewFeeNumericUpDown.Maximum = 10000m;
+            CrewFeeNumericUpDown.Minimum = 0m;
             CrewFeeNumericUpDown.Name = "CrewFeeNumericUpDown";
-            CrewFeeNumericUpDown.Size = new System.Drawing.Size(
-                UiConstants.FlightFormLayout.ControlWidth,
-                UiConstants.FlightFormLayout.SeventhControlTop);
+            CrewFeeNumericUpDown.Size = new System.Drawing.Size(280, 27);
             CrewFeeNumericUpDown.TabIndex = 6;
 
             // ServiceSurchargePercentLabel
             ServiceSurchargePercentLabel.AutoSize = true;
-            ServiceSurchargePercentLabel.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.LabelLeft,
-                UiConstants.FlightFormLayout.EighthControlTop);
+            ServiceSurchargePercentLabel.Location = new System.Drawing.Point(20, 315);
             ServiceSurchargePercentLabel.Name = "ServiceSurchargePercentLabel";
             ServiceSurchargePercentLabel.Size = new System.Drawing.Size(219, 20);
             ServiceSurchargePercentLabel.Text = "Процент надбавки за обслуживание:";
 
             // ServiceSurchargePercentNumericUpDown
-            ServiceSurchargePercentNumericUpDown.DecimalPlaces = UiConstants.NumericLimits.DecimalPlaces;
-            ServiceSurchargePercentNumericUpDown.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.ControlLeft + 100,
-                UiConstants.FlightFormLayout.EighthControlTop);
-            ServiceSurchargePercentNumericUpDown.Maximum = UiConstants.NumericLimits.MaxSurchargePercent;
-            ServiceSurchargePercentNumericUpDown.Minimum = UiConstants.NumericLimits.MinSurchargePercent;
+            ServiceSurchargePercentNumericUpDown.DecimalPlaces = 2;
+            ServiceSurchargePercentNumericUpDown.Location = new System.Drawing.Point(280, 313);
+            ServiceSurchargePercentNumericUpDown.Maximum = 100m;
+            ServiceSurchargePercentNumericUpDown.Minimum = 0m;
             ServiceSurchargePercentNumericUpDown.Name = "ServiceSurchargePercentNumericUpDown";
-            ServiceSurchargePercentNumericUpDown.Size = new System.Drawing.Size(
-                UiConstants.FlightFormLayout.ControlWidthSmall,
-                UiConstants.FlightFormLayout.EighthControlTop);
+            ServiceSurchargePercentNumericUpDown.Size = new System.Drawing.Size(80, 27);
             ServiceSurchargePercentNumericUpDown.TabIndex = 7;
 
             // RevenuePreviewLabel
             RevenuePreviewLabel.AutoSize = true;
-            RevenuePreviewLabel.Font = new System.Drawing.Font(
-                UiConstants.Fonts.DefaultFontName,
-                UiConstants.Fonts.BoldFontSize,
-                System.Drawing.FontStyle.Bold);
-            RevenuePreviewLabel.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.LabelLeft,
-                UiConstants.FlightFormLayout.RevenueLabelTop);
+            RevenuePreviewLabel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            RevenuePreviewLabel.Location = new System.Drawing.Point(20, 350);
             RevenuePreviewLabel.Name = "RevenuePreviewLabel";
-            RevenuePreviewLabel.Size = new System.Drawing.Size(80, 20);
+            RevenuePreviewLabel.Size = new System.Drawing.Size(85, 23);
             RevenuePreviewLabel.Text = "Выручка:";
 
             // RevenuePreviewValueLabel
             RevenuePreviewValueLabel.AutoSize = true;
-            RevenuePreviewValueLabel.Font = new System.Drawing.Font(
-                UiConstants.Fonts.DefaultFontName,
-                UiConstants.Fonts.BoldFontSize,
-                System.Drawing.FontStyle.Bold);
-            RevenuePreviewValueLabel.ForeColor = UiConstants.Colors.RevenuePreviewForeColor;
-            RevenuePreviewValueLabel.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.LabelLeft + 86,
-                UiConstants.FlightFormLayout.RevenueLabelTop);
+            RevenuePreviewValueLabel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            RevenuePreviewValueLabel.ForeColor = System.Drawing.Color.FromArgb(0, 100, 0);
+            RevenuePreviewValueLabel.Location = new System.Drawing.Point(105, 350);
             RevenuePreviewValueLabel.Name = "RevenuePreviewValueLabel";
-            RevenuePreviewValueLabel.Size = new System.Drawing.Size(33, 20);
-            RevenuePreviewValueLabel.Text = $"0 {UiConstants.Formatting.CurrencySymbol}";
+            RevenuePreviewValueLabel.Size = new System.Drawing.Size(38, 23);
+            RevenuePreviewValueLabel.Text = "0 ₽";
 
             // SaveButton
-            SaveButton.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.SaveButtonLeft,
-                UiConstants.FlightFormLayout.ButtonTop);
+            SaveButton.Location = new System.Drawing.Point(130, 405);
             SaveButton.Name = "SaveButton";
-            SaveButton.Size = new System.Drawing.Size(
-                UiConstants.FlightFormLayout.ButtonWidth,
-                UiConstants.FlightFormLayout.ButtonHeight);
+            SaveButton.Size = new System.Drawing.Size(120, 40);
             SaveButton.TabIndex = 1;
             SaveButton.Text = "Сохранить";
             SaveButton.UseVisualStyleBackColor = true;
             SaveButton.Click += SaveButton_Click;
 
             // CancelButton
-            CancelButton.Location = new System.Drawing.Point(
-                UiConstants.FlightFormLayout.CancelButtonLeft,
-                UiConstants.FlightFormLayout.ButtonTop);
+            CancelButton.Location = new System.Drawing.Point(280, 405);
             CancelButton.Name = "CancelButton";
-            CancelButton.Size = new System.Drawing.Size(
-                UiConstants.FlightFormLayout.ButtonWidth,
-                UiConstants.FlightFormLayout.ButtonHeight);
+            CancelButton.Size = new System.Drawing.Size(120, 40);
             CancelButton.TabIndex = 2;
             CancelButton.Text = "Отмена";
             CancelButton.UseVisualStyleBackColor = true;
@@ -323,9 +253,7 @@ namespace Airport.WinForms.Forms
             // FlightForm
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(
-                UiConstants.FlightFormLayout.FormWidth,
-                UiConstants.FlightFormLayout.FormHeight);
+            ClientSize = new System.Drawing.Size(544, 460);
             Controls.Add(CancelButton);
             Controls.Add(SaveButton);
             Controls.Add(FlightInfoGroupBox);

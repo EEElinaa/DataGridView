@@ -1,4 +1,4 @@
-namespace Airport.Domain.Constants
+namespace Airport.Domain.Models
 {
     /// <summary>
     /// Перечисление типов самолётов
@@ -12,7 +12,7 @@ namespace Airport.Domain.Constants
         Airbus,
 
         /// <summary>Самолёт ОАК</summary>
-        OAK
+        Oak
     }
 }
 
